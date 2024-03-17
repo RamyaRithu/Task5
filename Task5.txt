@@ -1,0 +1,147 @@
+1.1.	Write a program using map() method,to convert a list of Strings into uppercase.If the given List is: Stream names = Stream.of("aBc", "d", "du);
+
+Answer:
+
+package com.task5;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
+public class Uppercase {
+	
+
+	    public static void main(String[] args) {
+	        Stream<String> names = Stream.of("aBc", "d", "du");
+
+	        List<String> upperCaseNames = names.map(String::toUpperCase)
+	                                           .collect(Collectors.toList());
+
+	        System.out.println("Original List: " + Stream.of("aBc", "d", "du").collect(Collectors.toList()));
+	        System.out.println("List after converting to uppercase: " + upperCaseNames);
+	    }
+	}
+
+
+
+Output:
+
+Original List: [aBc, d, du]
+List after converting to uppercase: [ABC, D, DU]
+
+
+
+2.2.	Write a program to check whether the Strings in the List are empty or not and print the list having non-empty strings. If the given List is: Liststrings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
+
+
+Answer:
+
+package com.task5;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
+public class EmptyorNot {
+	
+	
+	    public static void main(String[] args) {
+	        List<String> strings = Arrays.asList("abc", "", "bc", "efg", "abcd", "", "jkl");
+
+	        List<String> nonEmptyStrings = strings.stream()
+	                .filter(s -> !s.isEmpty())
+	                .collect(Collectors.toList());
+
+	        System.out.println("Original List: " + strings);
+	        System.out.println("List with non-empty strings: " + nonEmptyStrings);
+	    }
+	}
+
+
+
+output:
+
+Original List: [abc, , bc, efg, abcd, , jkl]
+List with non-empty strings: [abc, bc, efg, abcd, jkl]
+
+
+3.3.	You are a teacher in school In your class there are 10 students , you have decided to give special gifts to those students whose names start with "A".you are asked to separate those students with the help of a Java program .
+Requirement:
+•	Use List interface to store the student name
+•	Use a lambda expression and the Stream API to filter the students
+
+
+Answe:
+
+package com.task5;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+public class FindTheName {
+	
+	
+	    public static void main(String[] args) {
+	        List<String> studentNames = Arrays.asList("Arun", "Bablu", "Charan", "Ammu", "Abi", "Anna", "Ramya", "Ajith", "Ava", "Sophia");
+
+	        List<String> studentsWithA = studentNames.stream()
+	                .filter(name -> name.startsWith("A"))
+	                .collect(Collectors.toList());
+
+	        System.out.println("Students whose names start with 'A': " + studentsWithA);
+	    }
+	}
+
+
+
+output:
+Students whose names start with 'A': [Arun, Ammu, Abi, Anna, Ajith, Ava]
+
+
+4.Rajesh has been given a task to create an app which takes the user's birthdate as input and calculates their age , you have to help him to build this app using the java.time.LocalDate class.
+Input :
+Enter your birthdate (yyyy-mm-dd): 1990-05-15
+Output :
+Your age is: 33 years, 4 months, and 13 days.
+
+
+
+Answer:
+
+package com.task5;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
+
+
+public class FindTheAge {
+	
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Enter your birthdate (yyyy-mm-dd): ");
+	        String birthdateInput = scanner.nextLine();
+
+	        // Parse the birthdate input into a LocalDate object
+	        LocalDate birthdate = LocalDate.parse(birthdateInput);
+
+	        // Get the current date
+	        LocalDate currentDate = LocalDate.now();
+
+	        // Calculate the period between the birthdate and current date
+	        Period period = Period.between(birthdate, currentDate);
+
+	        // Get the years, months, and days from the period
+	        int years = period.getYears();
+	        int months = period.getMonths();
+	        int days = period.getDays();
+
+	        // Print the age
+	        System.out.println("Your age is: " + years + " years, " + months + " months, and " + days + " days.");
+	    }
+	}
+
+
+output:
+Enter your birthdate (yyyy-mm-dd): 1998-01-21
+Your age is: 26 years, 1 months, and 25 days.
